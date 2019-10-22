@@ -1,9 +1,12 @@
 #include <Thermistor.h>
 Thermistor temp(0);
+int ledvermelho = 2;
 
 void setup() {
   Serial.begin(9600);
   delay(1000);
+  pinMode(ledvermelho, OUTPUT);
+  pinMode(3, OUTPUT);
 }
 
 void loop() {
@@ -13,4 +16,16 @@ void loop() {
   Serial.print(temperature);
   Serial.println("*C");
   delay(1000);
+
+  if (temperature >= 19) {
+    digitalWrite(ledvermelho , HIGH);
+    digitalWrite(3, LOW);
+  }
+  else {
+    digitalWrite(3, HIGH);
+    digitalWrite(ledvermelho, LOW);
+  }
+
 }
+
+
